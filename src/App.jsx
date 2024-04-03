@@ -2,9 +2,28 @@
 import { useState } from "react";
 import "./App.css";
 
+function getTasks() {
+  const tasksString = localStorage.getItem("tasks");
+  if (tasksString != null) {
+    return JSON.parse(tasksString);
+  } else {
+    return [];
+  }
+}
+
+function saveTasks(tasks) {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
 function App() {
   const [text, setText] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(getTasks());
+
+  const onClick = () => {
+    const newTasks = [...tasks, text];
+    setTasks(newTasks);
+    saveTasks(newTasks);
+  };
 
   return (
     <div>
@@ -13,13 +32,7 @@ function App() {
           setText(e.currentTarget.value);
         }}
       />
-      <button
-        onClick={() => {
-          setTasks([...tasks, text]);
-        }}
-      >
-        追加
-      </button>
+      <button onClick={onClick}>追加</button>
 
       {tasks.map((task) => (
         <div>
