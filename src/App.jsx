@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 const firebaseConfig = {
+  // Your web app's Firebase configuration here
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
