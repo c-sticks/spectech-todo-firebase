@@ -10,7 +10,7 @@
 ## Development
 
 1. npm install
-1. npm run start
+1. npm run dev
 
 ## Deploy
 
